@@ -28,9 +28,9 @@ const Cart = () => {
      <h1> <pre>Cart # {id}</pre></h1>
       <pre>Submitted: {fulfilled}</pre>
       <pre>Cart since: {createdAt}</pre>
-
+      Items:
       <div id="productsInCart">
-        Items:
+
         {products && products.length
           ? products.map((prod) => {
               return (

@@ -44,7 +44,7 @@ const SingleProduct = () => {
   return (
     <div className="singleProduct">
       <h1>Name: {name}</h1>
-      <img src={imageUrl} alt={name} />
+      <img id = 'singlePageImg'src={imageUrl} alt={name} />
       <p>Type: {type}</p>
       <p>Material: {material}</p>
       <p>Gender: {gender}</p>

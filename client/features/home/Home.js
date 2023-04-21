@@ -8,7 +8,7 @@ const Home = (props) => {
   const username = useSelector((state) => state.auth.me.username);
 
   return (
-    <div>
+    <div id='homeComp'>
       <h3>Welcome, {username}</h3>
     </div>
   );

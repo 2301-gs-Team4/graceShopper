@@ -14,8 +14,9 @@ const Navbar = () => {
   };
 
   return (
-    <div>
-      <h1>Shoe Store</h1>
+    <div id="navBarComp">
+      <h1>Shop-A-Shaq</h1>
+      <p>Your Big And Tall Store</p>
       <nav>
         {isLoggedIn ? (
           <div>
