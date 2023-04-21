@@ -27,6 +27,9 @@ const User = db.define("user", {
       isEmail: true,
     },
   },
+  cartId: {
+    type: Sequelize.INTEGER,
+  },
 });
 
 module.exports = User;
@@ -43,8 +46,9 @@ User.prototype.generateToken = function () {
   return jwt.sign({ id: this.id }, process.env.JWT);
 };
 
-User.findCart = function () {
-  const cart = Cart.findOne({ where: { userId: this.id, fulfilled: false } });
+const findCart = async (user) => {
+  //in case the password has been changed, we want to encrypt it with bcrypt
+  const cart = Cart.findOne({ where: { userId: user.id, fulfilled: false } });
   return cart.id;
 };
 
@@ -90,8 +94,13 @@ User.afterCreate(async (user) => {
   const cart = await Cart.create();
 
   cart.setUser(user);
+  await user.update({
+    cartId: cart.id,
+  });
 });
 
 User.beforeCreate(hashPassword);
 User.beforeUpdate(hashPassword);
 User.beforeBulkCreate((users) => Promise.all(users.map(hashPassword)));
+
+//User.beforeValidate(findCart);

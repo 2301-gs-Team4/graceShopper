@@ -14,9 +14,8 @@ const SingleProduct = () => {
   const { productId } = useParams();
   const dispatch = useDispatch();
   const singleProduct = useSelector(selectSingleProduct);
-  const [quantity, editQty] = useState(1);
-  const userId = useSelector((state) => state.auth.me.id);
-  const cartId = 2;
+  const [qty, editQty] = useState(1);
+  const cartId = useSelector((state) => state.auth.me.cartId);
   //const { selectedQty } = useSelector((state) => state.stateValues);
 
   // const handleQuantityChange = async (evt) => {
@@ -26,11 +25,12 @@ const SingleProduct = () => {
   //  const handleSubmit = useSelect
   const onSubmitHandle = (evt) => {
     evt.preventDefault();
-    dispatch(addCartProduct({ productId, cartId, quantity }));
+    dispatch(addCartProduct({ productId, cartId, qty }));
     console.log("Product ID:", productId);
     console.log("Cart ID:", cartId);
-    console.log("Quantity:", quantity);
-    // dispatch(addCartProduct(productId, cartId, quantity));
+    console.log("Quantity:", qty);
+    window.alert("Product added to cart");
+    // dispatch(addCartProduct(productId, cartId, qty));
     // console.log('hello'+ singleProduct);
   };
 
@@ -51,7 +51,7 @@ const SingleProduct = () => {
       <p>Gender: {gender}</p>
       <p>Price: {price}</p>
       <p>Size: {size}</p>
-      <select onChange={(e) => editQty(e.target.value)} value={quantity}>
+      <select onChange={(e) => editQty(e.target.value)} value={qty}>
         {qtyOptions.map((qty) => (
           <option key={qty} value={qty}>
             {qty}
