@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addCartProduct } from "../../cart/cartSlice";
+import { addCartProduct, selectCart } from "../../cart/cartSlice";
 import {
   selectSingleProduct,
   fetchSingleProduct,
@@ -15,24 +15,30 @@ const SingleProduct = () => {
   const dispatch = useDispatch();
   const singleProduct = useSelector(selectSingleProduct);
   const [quantity, editQty] = useState(1);
+  const cartId = useSelector(selectCart)
+  console.log(cartId)
   //const { selectedQty } = useSelector((state) => state.stateValues);
 
   // const handleQuantityChange = async (evt) => {
   //   await dispatch(editProductQuantity(productId, evt.target.value));
   // };
-
+  // const {id} = cartId
   //  const handleSubmit = useSelect
-  const onSubmitHandle = (evt) => {
-    evt.preventDefault();
-    dispatch(addCartProduct({ productId, userID }));
+  const onSubmitHandle = () => {
+    // evt.preventDefault();
+    console.log(productId)
+    console.log(cartId)
+    console.log(quantity)
+    // dispatch(addCartProduct(productId, cartId, quantity));
     // console.log('hello'+ singleProduct);
   };
 
   useEffect(() => {
     dispatch(fetchSingleProduct(productId));
+    dispatch(selectCart)
   }, [dispatch]);
 
-  const { id, name, imageUrl, type, material, gender, price, size, qty } =
+  const { name, imageUrl, type, material, gender, price, size } =
     singleProduct.info;
 
   return (
