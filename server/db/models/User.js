@@ -43,6 +43,11 @@ User.prototype.generateToken = function () {
   return jwt.sign({ id: this.id }, process.env.JWT);
 };
 
+User.findCart = function () {
+  const cart = Cart.findOne({ where: { userId: this.id, fulfilled: false } });
+  return cart.id;
+};
+
 /**
  * classMethods
  */

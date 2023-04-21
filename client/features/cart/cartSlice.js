@@ -11,12 +11,16 @@ export const fetchCart = createAsyncThunk("myCart", async (id) => {
 });
 
 export const addCartProduct = createAsyncThunk(
-  "singleProduct",
-  async (productID, cartId, qtyId) => {
-      const { data } = await axios.get(`/api/products/${productID}/${cartId}/${qtyId}`);
-      console.log(data)
-      return data;
-  });
+  "addToCart",
+  async ({ productId, cartId, qty }) => {
+    const { data } = await axios.post(`/api/cartproducts/`, {
+      productId,
+      cartId,
+      qty,
+    });
+    return data;
+  }
+);
 
 const initialState = {
   info: {},
@@ -40,9 +44,9 @@ const cartSlice = createSlice({
     builder.addCase(addCartProduct.fulfilled, (state, action) => {
       return action.payload;
     });
-    builder.addCase(addCartProduct.rejected, (state, action) => {
-      return Error("Trouble This Product to a Cart Product");
-    });
+    // builder.addCase(addCartProduct.rejected, (state, action) => {
+    //   return Error("Couldn't add this product to your cart");
+    // });
   },
 });
 export const selectCart = (state) => {

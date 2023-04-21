@@ -52,6 +52,7 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
+
 // router.post("/:id/cart/add", async (req, res, next) => {
 //   try {
 //     //cant quite figure out how to add or create a product in the cart need fresh eyes!!!!!!!!!!!!!

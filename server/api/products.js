@@ -23,14 +23,26 @@ router.get("/:productId", async (req, res, next) => {
   }
 });
 
+router.post("/:productId", async (req, res, next) => {
+  try {
+    res.status(201).send(await CartProduct.create(req.body));
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.post("/:productId/:cartId/:qtyId", async (req, res, next) => {
   try {
     const productId = req.params.id.productId;
     const cartId = req.params.id.cartId;
     const qtyId = req.params.id.qtyId;
-    console.log(productId,cartId,qtyId)
-    const newCartProd = await CartProduct.create({qty: qtyId, productId: productId, cartId:cartId })
-    res.status(201).send(newCartProd)
+    console.log(productId, cartId, qtyId);
+    const newCartProd = await CartProduct.create({
+      qty: qtyId,
+      productId: productId,
+      cartId: cartId,
+    });
+    res.status(201).send(newCartProd);
     // const userId = req.user.id;
     // const product = await Product.findByPk(productId);
     // if (!product) {

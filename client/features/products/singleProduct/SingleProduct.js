@@ -15,8 +15,8 @@ const SingleProduct = () => {
   const dispatch = useDispatch();
   const singleProduct = useSelector(selectSingleProduct);
   const [quantity, editQty] = useState(1);
-  const cartId = useSelector(selectCart)
-  console.log(cartId)
+  const userId = useSelector((state) => state.auth.me.id);
+  const cartId = 2;
   //const { selectedQty } = useSelector((state) => state.stateValues);
 
   // const handleQuantityChange = async (evt) => {
@@ -24,18 +24,19 @@ const SingleProduct = () => {
   // };
   // const {id} = cartId
   //  const handleSubmit = useSelect
-  const onSubmitHandle = () => {
-    // evt.preventDefault();
-    console.log(productId)
-    console.log(cartId)
-    console.log(quantity)
+  const onSubmitHandle = (evt) => {
+    evt.preventDefault();
+    dispatch(addCartProduct({ productId, cartId, quantity }));
+    console.log("Product ID:", productId);
+    console.log("Cart ID:", cartId);
+    console.log("Quantity:", quantity);
     // dispatch(addCartProduct(productId, cartId, quantity));
     // console.log('hello'+ singleProduct);
   };
 
   useEffect(() => {
     dispatch(fetchSingleProduct(productId));
-    dispatch(selectCart)
+    dispatch(selectCart);
   }, [dispatch]);
 
   const { name, imageUrl, type, material, gender, price, size } =
@@ -44,7 +45,7 @@ const SingleProduct = () => {
   return (
     <div className="singleProduct">
       <h1>Name: {name}</h1>
-      <img id = 'singlePageImg'src={imageUrl} alt={name} />
+      <img id="singlePageImg" src={imageUrl} alt={name} />
       <p>Type: {type}</p>
       <p>Material: {material}</p>
       <p>Gender: {gender}</p>

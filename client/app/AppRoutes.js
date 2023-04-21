@@ -15,7 +15,8 @@ import Cart from "../features/cart/Cart";
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.auth.me.id);
+  const userId = useSelector((state) => state.auth.me);
+  console.log(userId);
 
   useEffect(() => {
     dispatch(me());
