@@ -10,7 +10,7 @@ const Cart = () => {
   console.log(userId);
   const dispatch = useDispatch();
   const singleCart = useSelector(selectCart);
-
+  console.log(singleCart)
   useEffect(() => {
     dispatch(fetchCart(userId));
   }, [dispatch]);
@@ -30,12 +30,12 @@ const Cart = () => {
 
   return (
     <div id="userCartCard">
-      <h1>Cart</h1>
-      <span>Cart ID:{id}</span>
-      <span>Submitted:{fulfilled}</span>
-      <span>Cart since:{createdAt}</span>
+     <h1> <pre>Cart # {id}</pre></h1>
+      <pre>Submitted: {fulfilled}</pre>
+      <pre>Cart since: {createdAt}</pre>
+      Items:
       <div id="productsInCart">
-        products:
+
         {products && products.length
           ? products.map((prod) => {
               return (
@@ -58,7 +58,7 @@ const Cart = () => {
                 </div>
               );
             })
-          : "empty"}
+          : "You Got A empty Cart :("}
       </div>
       <div id="cartTotal">
         <p>Total Cost: ${totalCost}</p>
