@@ -71,13 +71,12 @@ const Cart = () => {
       </div>
       <div id="cartTotal">
         <p>Total Cost: ${totalCost}</p>
-        <Link to="/checkout">
-          <button id="checkoutBtn">Checkout</button>
-        </Link>
       </div>
-      <button id="checkout" onClick={handleCheckout}>
-        Checkout Cart
-      </button>
+      <Link to="/checkout">
+        <button id="checkout" onClick={handleCheckout}>
+          Checkout Cart
+        </button>
+      </Link>
     </div>
   );
 };
