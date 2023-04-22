@@ -22,6 +22,11 @@ export const addCartProduct = createAsyncThunk(
   }
 );
 
+export const checkoutCart = createAsyncThunk("checkoutCart", async (cartId) => {
+  const { data } = await axios.put(`/api/carts/${cartId}`);
+  return data;
+});
+
 const initialState = {
   info: {},
 };
@@ -47,6 +52,9 @@ const cartSlice = createSlice({
     // builder.addCase(addCartProduct.rejected, (state, action) => {
     //   return Error("Couldn't add this product to your cart");
     // });
+    builder.addCase(checkoutCart.fulfilled, (state, action) => {
+      return action.payload;
+    });
   },
 });
 export const selectCart = (state) => {

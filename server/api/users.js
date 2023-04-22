@@ -30,7 +30,7 @@ User.prototype.addProductToCart = async function (productId) {
 router.get("/:userId/cart", async (req, res, next) => {
   try {
     const userCart = await Cart.findAll({
-      where: { userId: req.params.userId },
+      where: { userId: req.params.userId, fulfilled: false },
       include: {
         model: Product,
         through: CartProduct,
