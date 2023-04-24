@@ -26,9 +26,6 @@ const SingleProduct = () => {
   const onSubmitHandle = (evt) => {
     evt.preventDefault();
     dispatch(addCartProduct({ productId, cartId, qty }));
-    console.log("Product ID:", productId);
-    console.log("Cart ID:", cartId);
-    console.log("Quantity:", qty);
     window.alert("Product added to cart");
     // dispatch(addCartProduct(productId, cartId, qty));
     // console.log('hello'+ singleProduct);
