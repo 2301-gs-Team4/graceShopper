@@ -10,6 +10,9 @@ const CartProduct = db.define("cartproduct", {
   },
   qty: {
     type: Sequelize.INTEGER,
+    validate: {
+      min: 1,
+    },
   },
 });
 

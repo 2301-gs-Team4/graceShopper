@@ -6,6 +6,7 @@ import {
   selectCart,
   checkoutCart,
   deleteCartItem,
+  editCartProduct,
 } from "./cartSlice";
 import { Link } from "react-router-dom";
 
@@ -22,16 +23,34 @@ const Cart = () => {
     dispatch(fetchCart(userId));
   }, [dispatch]);
 
-  const handleDelete = async (id) => {
+  //Edit Quantity
+  const [qty, editQty] = useState("");
+
+  const handleEdit = async (evt, cartproductId, qty) => {
+    evt.preventDefault();
+    if (qty && qty > 0 && qty % 1 === 0) {
+      await dispatch(editCartProduct({ cartproductId, qty }));
+      console.log(qty);
+      editQty("");
+      Promise.all(fetchCart(userId));
+    } else {
+      window.alert("Quantity must be filled in and be a positive integer.");
+    }
+  };
+
+  //Delete Cart Item
+  const handleDelete = async (evt, id) => {
+    evt.preventDefault();
     await dispatch(deleteCartItem(id));
   };
 
+  //Checkout Cart
   function handleCheckout(evt) {
     evt.preventDefault();
     dispatch(checkoutCart(cartId));
   }
 
-  const { id, fulfilled, createdAt, products } = singleCart.info;
+  const { id, fulfilled, createdAt, products } = singleCart?.info || {};
 
   const totalCost = products?.reduce(
     (total, prod) => total + prod.cartproduct.qty * prod.price,
@@ -49,7 +68,7 @@ const Cart = () => {
       Items:
       <div id="productsInCart">
         {products && products.length
-          ? products.map((prod) => {
+          ? products?.map((prod) => {
               return (
                 <div key={`prod inCart:${prod.id}`}>
                   <Link to={`/products/${prod.id}`}>
@@ -64,15 +83,31 @@ const Cart = () => {
                       </div>
                     </div>
                   </Link>
+                  <form
+                    id="edit-form"
+                    onSubmit={(e) => handleEdit(e, prod.cartproduct.id, qty)}
+                  >
+                    <label htmlFor="name">Edit Quantity:</label>
+                    <input
+                      name="qty"
+                      value={qty}
+                      onChange={(e) => editQty(e.target.value)}
+                    />
+                    <div className="button-box">
+                      <button type="submit">Edit</button>
+                    </div>
+                  </form>
                   <div className="delete-button">
-                    <button onClick={() => handleDelete(prod.cartproduct.id)}>
+                    <button
+                      onClick={(e) => handleDelete(e, prod.cartproduct.id)}
+                    >
                       X
                     </button>
                   </div>
                 </div>
               );
             })
-          : "You Got A empty Cart :("}
+          : "You Got an empty Cart :("}
       </div>
       <div id="cartTotal">
         <p>Total Cost: ${totalCost}</p>

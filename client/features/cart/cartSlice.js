@@ -35,6 +35,16 @@ export const deleteCartItem = createAsyncThunk(
   }
 );
 
+export const editCartProduct = createAsyncThunk(
+  "editCampus",
+  async ({ cartproductId, qty }) => {
+    const { data } = await axios.put(`/api/cartproducts/${cartproductId}`, {
+      qty,
+    });
+    return data;
+  }
+);
+
 const initialState = {
   info: {},
 };
@@ -64,6 +74,9 @@ const cartSlice = createSlice({
       return action.payload;
     });
     builder.addCase(deleteCartItem.fulfilled, (state, action) => {
+      return action.payload;
+    });
+    builder.addCase(editCartProduct.fulfilled, (state, action) => {
       return action.payload;
     });
   },

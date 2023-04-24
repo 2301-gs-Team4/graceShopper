@@ -30,3 +30,12 @@ router.delete("/:cartproductId", async (req, res, next) => {
     next(error);
   }
 });
+
+router.put("/:cartproductId", async (req, res, next) => {
+  try {
+    const cartProduct = await CartProduct.findByPk(req.params.cartproductId);
+    res.send(await cartProduct.update(req.body));
+  } catch (error) {
+    next(error);
+  }
+});
