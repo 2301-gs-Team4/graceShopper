@@ -28,3 +28,15 @@ router.put("/:cartId", async (req, res, next) => {
     next(error);
   }
 });
+
+router.delete("/", async (req, res, next) => {
+  try {
+    const cartProduct = await CartProduct.findOne({
+      where: { productId: req.body.productId, cartId: req.body.cartId },
+    });
+    await cartProduct.destroy();
+    res.send(cartProduct);
+  } catch (error) {
+    next(error);
+  }
+});

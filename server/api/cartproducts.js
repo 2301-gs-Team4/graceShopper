@@ -20,3 +20,13 @@ router.post("/", async (req, res, next) => {
     next(error);
   }
 });
+
+router.delete("/:cartproductId", async (req, res, next) => {
+  try {
+    const cartProduct = await CartProduct.findByPk(req.params.cartproductId);
+    await cartProduct.destroy();
+    res.send(cartProduct);
+  } catch (error) {
+    next(error);
+  }
+});

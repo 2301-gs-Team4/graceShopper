@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCart, selectCart, checkoutCart } from "./cartSlice";
+import {
+  fetchCart,
+  selectCart,
+  checkoutCart,
+  deleteCartItem,
+} from "./cartSlice";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
@@ -17,11 +22,9 @@ const Cart = () => {
     dispatch(fetchCart(userId));
   }, [dispatch]);
 
-  function handleDelete(evt) {
-    console.log("delete" + evt.target);
-    // dispatch(clearCart)
-    //need to use clear cart for the delete functionality
-  }
+  const handleDelete = async (id) => {
+    await dispatch(deleteCartItem(id));
+  };
 
   function handleCheckout(evt) {
     evt.preventDefault();
@@ -61,9 +64,11 @@ const Cart = () => {
                       </div>
                     </div>
                   </Link>
-                  <button id="cartDeleteItemBtn" onClick={handleDelete}>
-                    Remove
-                  </button>
+                  <div className="delete-button">
+                    <button onClick={() => handleDelete(prod.cartproduct.id)}>
+                      X
+                    </button>
+                  </div>
                 </div>
               );
             })

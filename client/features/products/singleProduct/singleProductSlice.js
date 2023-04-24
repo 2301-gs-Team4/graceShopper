@@ -39,8 +39,6 @@ const singleProductSlice = createSlice({
     });
     builder.addCase(editProductQuantity.fulfilled, (state, action) => {
       state.info.qty = action.payload;
-      console.log(state.info.qty.qty);
-      console.log(action.payload);
     });
   },
 });

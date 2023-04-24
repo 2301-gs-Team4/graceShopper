@@ -27,6 +27,14 @@ export const checkoutCart = createAsyncThunk("checkoutCart", async (cartId) => {
   return data;
 });
 
+export const deleteCartItem = createAsyncThunk(
+  "deleteCartItem",
+  async (cartproductId) => {
+    const { data } = await axios.delete(`/api/cartproducts/${cartproductId}`);
+    return data;
+  }
+);
+
 const initialState = {
   info: {},
 };
@@ -53,6 +61,9 @@ const cartSlice = createSlice({
     //   return Error("Couldn't add this product to your cart");
     // });
     builder.addCase(checkoutCart.fulfilled, (state, action) => {
+      return action.payload;
+    });
+    builder.addCase(deleteCartItem.fulfilled, (state, action) => {
       return action.payload;
     });
   },
