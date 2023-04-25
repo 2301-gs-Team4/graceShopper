@@ -13,6 +13,10 @@ async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
 
+  // o: use axios to request data from some api => data
+  //  - loop thru data and create User from that data
+  //  - there may be some issues with resolving the promises correctly
+
   // Creating Users
   const users = await Promise.all([
     User.create({
