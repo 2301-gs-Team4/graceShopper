@@ -4,6 +4,7 @@ const {
 } = require("../db");
 module.exports = router;
 
+//Fetches all CartProducts
 router.get("/", async (req, res, next) => {
   try {
     const cartProducts = await CartProduct.findAll();
@@ -13,6 +14,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+//Adds a product to the Cart
 router.post("/", async (req, res, next) => {
   try {
     res.status(201).send(await CartProduct.create(req.body));
@@ -21,6 +23,7 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+//Deletes a product from the cart
 router.delete("/:cartproductId", async (req, res, next) => {
   try {
     const cartProduct = await CartProduct.findByPk(req.params.cartproductId);
@@ -31,6 +34,7 @@ router.delete("/:cartproductId", async (req, res, next) => {
   }
 });
 
+//Updates the product in the cart
 router.put("/:cartproductId", async (req, res, next) => {
   try {
     const cartProduct = await CartProduct.findByPk(req.params.cartproductId);

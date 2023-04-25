@@ -5,7 +5,6 @@ import { addCartProduct, selectCart } from "../../cart/cartSlice";
 import {
   selectSingleProduct,
   fetchSingleProduct,
-  editProductQuantity,
 } from "../singleProduct/singleProductSlice";
 
 const qtyOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -16,19 +15,11 @@ const SingleProduct = () => {
   const singleProduct = useSelector(selectSingleProduct);
   const [qty, editQty] = useState(1);
   const cartId = useSelector((state) => state.auth.me.cartId);
-  //const { selectedQty } = useSelector((state) => state.stateValues);
 
-  // const handleQuantityChange = async (evt) => {
-  //   await dispatch(editProductQuantity(productId, evt.target.value));
-  // };
-  // const {id} = cartId
-  //  const handleSubmit = useSelect
   const onSubmitHandle = (evt) => {
     evt.preventDefault();
     dispatch(addCartProduct({ productId, cartId, qty }));
     window.alert("Product added to cart");
-    // dispatch(addCartProduct(productId, cartId, qty));
-    // console.log('hello'+ singleProduct);
   };
 
   useEffect(() => {

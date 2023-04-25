@@ -4,6 +4,7 @@ const {
 } = require("../db");
 module.exports = router;
 
+//Fetches all Carts
 router.get("/", async (req, res, next) => {
   try {
     const carts = await Cart.findAll();
@@ -13,6 +14,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+//Checks out the cart, creates a new cart, and assigns the new cart to the logged-in user
 router.put("/:cartId", async (req, res, next) => {
   try {
     const cart = await Cart.findByPk(req.params.cartId, {});
@@ -24,18 +26,6 @@ router.put("/:cartId", async (req, res, next) => {
     await user.update({
       cartId: newCart.id,
     });
-  } catch (error) {
-    next(error);
-  }
-});
-
-router.delete("/", async (req, res, next) => {
-  try {
-    const cartProduct = await CartProduct.findOne({
-      where: { productId: req.body.productId, cartId: req.body.cartId },
-    });
-    await cartProduct.destroy();
-    res.send(cartProduct);
   } catch (error) {
     next(error);
   }

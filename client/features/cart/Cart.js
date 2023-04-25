@@ -42,12 +42,16 @@ const Cart = () => {
   const handleDelete = async (evt, id) => {
     evt.preventDefault();
     await dispatch(deleteCartItem(id));
+    window.alert("This item has been removed from your cart.");
   };
 
   //Checkout Cart
   function handleCheckout(evt) {
     evt.preventDefault();
     dispatch(checkoutCart(cartId));
+    window.alert(
+      "Your cart has been checked out! Thank you for shopping with us!"
+    );
   }
 
   const { id, fulfilled, createdAt, products } = singleCart?.info || {};
@@ -77,8 +81,10 @@ const Cart = () => {
                       <div>
                         <p id="prodName">{prod.name}</p>
                         <p id="prodPrice">
-                          {prod.cartproduct.qty} Total: $
-                          {prod.cartproduct.qty * prod.price}
+                          Quantity: {prod.cartproduct.qty}{" "}
+                          <p id="totalPrice">
+                            Total: ${prod.cartproduct.qty * prod.price}
+                          </p>
                         </p>
                       </div>
                     </div>
