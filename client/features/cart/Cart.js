@@ -61,6 +61,7 @@ const Cart = () => {
       if (isLoggedIn) {
         dispatch(addToCart(user.id, product.id));
       } else {
+        // o: move this logic into guesCartSlice
         // get existing cart data from local storage
         const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -77,6 +78,7 @@ const Cart = () => {
           existingCart.push({ id: product.id, quantity: 1 });
         }
 
+        // o: move this logic into guesCartSlice
         // store updated cart data in local storage
         localStorage.setItem("cart", JSON.stringify(existingCart));
       }
