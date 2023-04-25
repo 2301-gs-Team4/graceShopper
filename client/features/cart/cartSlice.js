@@ -58,6 +58,8 @@ const cartSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // o: double check these to make sure the state is being updated correctly...
+    //  namely, the editCartProduct.fulfilled
     builder.addCase(fetchCart.fulfilled, (state, action) => {
       state.info = action.payload;
     });

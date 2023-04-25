@@ -7,6 +7,8 @@ const Product = db.define("product", {
     allowNull: false,
   },
   type: {
+    // o: so having these as strings allows for freeform types but it may be beneficial
+    //  to use Sequelize.ENUM to limit the possibilities
     type: Sequelize.STRING,
     allowNull: false,
   },
@@ -26,6 +28,7 @@ const Product = db.define("product", {
     type: Sequelize.FLOAT,
     allowNull: false,
   },
+  // o: quantity?
   qty: {
     type: Sequelize.INTEGER,
     allowNull: false,

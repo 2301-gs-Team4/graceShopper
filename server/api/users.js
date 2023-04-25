@@ -23,6 +23,7 @@ router.get("/:userId/cart", async (req, res, next) => {
 //Fetches all users and includes Id and username
 router.get("/", async (req, res, next) => {
   try {
+    // o: only admins should be able to see this
     const users = await User.findAll({
       attributes: ["id", "username"],
     });

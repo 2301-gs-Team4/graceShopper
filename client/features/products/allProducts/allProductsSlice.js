@@ -3,6 +3,7 @@ import axios from "axios";
 
 const initialState = [];
 
+// o: you don't need try / catches in thunks... i'll explain
 export const fetchProductsAsync = createAsyncThunk("allProducts", async () => {
   try {
     const { data } = await axios.get("/api/products");

@@ -14,6 +14,10 @@ User.hasMany(Cart);
 Product.belongsToMany(Cart, { through: CartProduct });
 
 Cart.belongsToMany(Product, { through: CartProduct });
+
+// o: you always place your foreign key in the model that
+//  belongs to the other (i.e the userId foreign key should exist on Cart 
+//  because it belongs to User)
 Cart.belongsTo(User);
 
 module.exports = {

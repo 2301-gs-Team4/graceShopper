@@ -28,6 +28,7 @@ const Cart = () => {
 
   const handleEdit = async (evt, cartproductId, qty) => {
     evt.preventDefault();
+    
     if (qty && qty > 0 && qty % 1 === 0) {
       await dispatch(editCartProduct({ cartproductId, qty }));
       console.log(qty);

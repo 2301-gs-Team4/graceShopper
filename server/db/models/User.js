@@ -27,6 +27,7 @@ const User = db.define("user", {
       isEmail: true,
     },
   },
+  // o: ??? you are misunderstanding how this association works
   cartId: {
     type: Sequelize.INTEGER,
   },
