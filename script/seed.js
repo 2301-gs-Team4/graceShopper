@@ -13,6 +13,17 @@ async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
 
+  // Create the guest user
+  const guestDefaults = {
+    username: "",
+    password: "",
+    email: "guest@guest.com",
+  };
+  const guest = await User.create({
+    ...guestDefaults,
+    isAdmin: false,
+  });
+
   // Creating Users
   const users = await Promise.all([
     User.create({
@@ -39,7 +50,7 @@ async function seed() {
       type: "Formal",
       material: "Leather",
       gender: "M",
-      price: 199.99,
+      price: 200,
       size: "11",
     }),
     Product.create({
@@ -47,7 +58,7 @@ async function seed() {
       type: "Athletic",
       material: "Nylon",
       gender: "W",
-      price: 79.99,
+      price: 80,
       size: "9.5",
     }),
     Product.create({
@@ -55,7 +66,7 @@ async function seed() {
       type: "Casual",
       material: "Cotton",
       gender: "M",
-      price: 19.99,
+      price: 20,
       size: "M",
     }),
     Product.create({
@@ -63,7 +74,7 @@ async function seed() {
       type: "Formal",
       material: "Wool",
       gender: "M",
-      price: 19.99,
+      price: 20,
       size: "L",
     }),
   ]);

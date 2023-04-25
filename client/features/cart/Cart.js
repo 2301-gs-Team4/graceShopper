@@ -19,6 +19,25 @@ const Cart = () => {
   console.log(singleCart);
   const cartId = useSelector((state) => state.auth.me.cartId);
 
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
+  const cartItems = isLoggedIn
+    ? user.cart
+    : JSON.parse(localStorage.getItem("cart")) || [];
+
+    // const addToCart = (userId, productId) => {
+    //   dispatch(editCartProduct({ userId, productId }));
+    // };
+    // const removeFromCart = (userId, productId) => {
+    //   dispatch(deleteCartItem(userId, productId));
+    // };
+    // const checkoutCart = (userId) => {
+    //   dispatch(checkoutCart(userId));
+    // };
+    // const clearCart = (userId) => {
+    //   dispatch(deleteCartItem(userId));
+    //   dispatch(fetchCart(userId));
+    // };
+
   useEffect(() => {
     dispatch(fetchCart(userId));
   }, [dispatch]);
@@ -37,6 +56,32 @@ const Cart = () => {
       window.alert("Quantity must be filled in and be a positive integer.");
     }
   };
+
+    const handleAddToCart = (product) => {
+      if (isLoggedIn) {
+        dispatch(addToCart(user.id, product.id));
+      } else {
+        // get existing cart data from local storage
+        const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // check if product already exists in cart
+        const existingItem = existingCart.find(
+          (item) => item.id === product.id
+        );
+
+        if (existingItem) {
+          // increment quantity if product already exists in cart
+          existingItem.quantity += 1;
+        } else {
+          // add new product to cart with quantity 1
+          existingCart.push({ id: product.id, quantity: 1 });
+        }
+
+        // store updated cart data in local storage
+        localStorage.setItem("cart", JSON.stringify(existingCart));
+      }
+    };
+
 
   //Delete Cart Item
   const handleDelete = async (evt, id) => {
