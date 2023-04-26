@@ -29,10 +29,6 @@ const User = db.define("user", {
   cartId: {
     type: Sequelize.INTEGER,
   },
-  isGuest: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false,
-  },
 });
 
 module.exports = User;

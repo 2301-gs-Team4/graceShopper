@@ -13,17 +13,6 @@ async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
 
-  // Create the guest user
-  const guestDefaults = {
-    username: "",
-    password: "",
-    email: "guest@guest.com",
-  };
-  const guest = await User.create({
-    ...guestDefaults,
-    isAdmin: false,
-  });
-
   // Creating Users
   const users = await Promise.all([
     User.create({
