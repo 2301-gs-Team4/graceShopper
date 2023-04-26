@@ -17,7 +17,7 @@ a{
   color: aliceblue;
 }
 a:hover{
-  color: rgb(229, 52, 52);
+  color: rgb(81, 229, 52);
 }
 #app{
   align-items: center;
@@ -28,8 +28,17 @@ a:hover{
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
   flex-wrap: wrap;
+}
+#product-row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
 }
 #singleProduct{
   align-items: center;
@@ -52,4 +61,55 @@ a:hover{
   border-bottom: 1rem;
   box-shadow: 20px;
   border-color: bisque;
+}
+#productsInCart{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  justify-content: space-around;
+}
+#InnerApp{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#navBarComp{
+  top: 0;
+  right: 0;
+  left: 0;
+  position: sticky;
+  color: #ebbe1b;
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  width: 80vw;
+  border: none;
+  margin-bottom: 100px;
+}
+
+button{
+  color: #e98d0c;
+  background-color: rgba(38, 105, 169, 0.794);
+}
+input{
+  background-color: #698496;
+  color: #e98d0c;
+}
+#edit-form > input{
+  width: 5rem;
+}
+#mappedProd{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 6rem;
+  color: aliceblue;
+}
+#userCartCard{
+  border: #698496;
+  margin-bottom: 100px;
 }

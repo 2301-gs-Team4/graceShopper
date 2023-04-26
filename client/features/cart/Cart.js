@@ -110,14 +110,13 @@ const Cart = () => {
         {" "}
         <pre>Cart # {id}</pre>
       </h1>
-      <pre>Submitted: {fulfilled}</pre>
       <pre>Cart since: {createdAt}</pre>
       Items:
       <div id="productsInCart">
         {products && products.length
           ? products?.map((prod) => {
               return (
-                <div key={`prod inCart:${prod.id}`}>
+                <div id="mappedProd" key={`prod inCart:${prod.id}`}>
                   <Link to={`/products/${prod.id}`}>
                     <div id="prodCard">
                       <img id="tinyImg" src={prod.imageUrl} />
