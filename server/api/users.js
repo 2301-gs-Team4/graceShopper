@@ -3,6 +3,16 @@ const {
   models: { User, Cart, Product, CartProduct },
 } = require("../db");
 module.exports = router;
+router.use
+
+// function isAdmin(req, res, next){
+//   if(req.user){
+//     next()
+//   }else{
+//     console.log(req.user)
+//     throw Error("You're Not An Admin!")
+//   }
+// }
 
 //Fetches cart by userId and includes products
 router.get("/:userId/cart", async (req, res, next) => {
