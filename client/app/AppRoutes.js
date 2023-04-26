@@ -16,7 +16,11 @@ const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.me);
-  console.log(userId);
+  // const userId = useSelector((state) =>
+  //   isLoggedIn ? state.auth.me.id : "guest"
+  // );
+  // const guestUserId = 1; // Set the ID of the default guest user
+  // console.log(userId);
 
   useEffect(() => {
     dispatch(me());
