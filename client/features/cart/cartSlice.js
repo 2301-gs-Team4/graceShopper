@@ -61,15 +61,9 @@ const cartSlice = createSlice({
     builder.addCase(fetchCart.fulfilled, (state, action) => {
       state.info = action.payload;
     });
-    builder.addCase(fetchCart.rejected, (state, action) => {
-      return Error("Trouble Fetching Your Cart");
-    });
     builder.addCase(addCartProduct.fulfilled, (state, action) => {
       return action.payload;
     });
-    // builder.addCase(addCartProduct.rejected, (state, action) => {
-    //   return Error("Couldn't add this product to your cart");
-    // });
     builder.addCase(checkoutCart.fulfilled, (state, action) => {
       return action.payload;
     });

@@ -5,7 +5,6 @@ import { addCartProduct, selectCart } from "../../cart/cartSlice";
 import {
   selectSingleProduct,
   fetchSingleProduct,
-  editProductQuantity,
 } from "../singleProduct/singleProductSlice";
 
 const qtyOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9];
