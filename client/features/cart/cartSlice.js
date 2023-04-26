@@ -36,7 +36,7 @@ export const deleteCartItem = createAsyncThunk(
 );
 
 export const editCartProduct = createAsyncThunk(
-  "editCampus",
+  "editCartProduct",
   async ({ cartproductId, qty }) => {
     const { data } = await axios.put(`/api/cartproducts/${cartproductId}`, {
       qty,

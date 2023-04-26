@@ -12,11 +12,8 @@ import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { userId } = useParams();
-  console.log(useParams());
-  console.log(userId);
   const dispatch = useDispatch();
   const singleCart = useSelector(selectCart);
-  console.log(singleCart);
   const cartId = useSelector((state) => state.auth.me.cartId);
 
   const { isLoggedIn, user } = useSelector((state) => state.auth);
@@ -49,7 +46,6 @@ const Cart = () => {
     evt.preventDefault();
     if (qty && qty > 0 && qty % 1 === 0) {
       await dispatch(editCartProduct({ cartproductId, qty }));
-      console.log(qty);
       editQty("");
       Promise.all(fetchCart(userId));
     } else {

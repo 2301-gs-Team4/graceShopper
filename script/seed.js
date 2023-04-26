@@ -41,6 +41,8 @@ async function seed() {
       gender: "M",
       price: 200,
       size: "11",
+      imageUrl:
+        "https://media.istockphoto.com/id/172417586/photo/elegant-black-leather-shoes.jpg?s=612x612&w=0&k=20&c=c_tTljwbu2m0AGxwb27NxCgG0Y2Cv-C4v8q6V36RYbw=",
     }),
     Product.create({
       name: "Running Shoes",
@@ -49,6 +51,8 @@ async function seed() {
       gender: "W",
       price: 80,
       size: "9.5",
+      imageUrl:
+        "https://www.lucepictor.com/wp-content/uploads/2016/11/running-shoes-product-photo-on-white.jpg",
     }),
     Product.create({
       name: "Cozy Socks",
@@ -57,6 +61,8 @@ async function seed() {
       gender: "M",
       price: 20,
       size: "M",
+      imageUrl:
+        "https://cdn.shopify.com/s/files/1/2781/7926/products/ET91703BlueWhiteStripes_613x613.jpg?v=1677937339",
     }),
     Product.create({
       name: "Dress Socks",
@@ -65,6 +71,8 @@ async function seed() {
       gender: "M",
       price: 20,
       size: "L",
+      imageUrl:
+        "https://cdn.shopify.com/s/files/1/0505/7019/9217/products/X259.jpg?v=1613768115",
     }),
   ]);
 
