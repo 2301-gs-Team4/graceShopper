@@ -30,6 +30,29 @@ const guestCartSlice = createSlice({
   },
 });
 
+// const handleAddToCart = (product) => {
+//   if (isLoggedIn) {
+//     dispatch(addToCart(user.id, product.id));
+//   } else {
+//     // get existing cart data from local storage
+//     const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+//     // check if product already exists in cart
+//     const existingItem = existingCart.find((item) => item.id === product.id);
+
+//     if (existingItem) {
+//       // increment quantity if product already exists in cart
+//       existingItem.quantity += 1;
+//     } else {
+//       // add new product to cart with quantity 1
+//       existingCart.push({ id: product.id, quantity: 1 });
+//     }
+
+//     // store updated cart data in local storage
+//     localStorage.setItem("cart", JSON.stringify(existingCart));
+//   }
+// };
+
 export const { addToCart, removeFromCart, clearCart } = guestCartSlice.actions;
 
 export default guestCartSlice.reducer;

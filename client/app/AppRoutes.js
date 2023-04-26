@@ -19,8 +19,8 @@ const AppRoutes = () => {
   // const userId = useSelector((state) =>
   //   isLoggedIn ? state.auth.me.id : "guest"
   // );
-  const guestUserId = 1; // Set the ID of the default guest user
-  console.log(userId);
+  // const guestUserId = 1; // Set the ID of the default guest user
+  // console.log(userId);
 
   useEffect(() => {
     dispatch(me());
@@ -38,12 +38,7 @@ const AppRoutes = () => {
             path="/products/:productId/"
             element={<SingleProduct />}
           />
-          {/* <Route path={`users/:userId/cart`} element={<Cart />} /> */}
-          <Route
-            path={`users/${userId}/cart`}
-            element={<Cart userId={userId} />}
-          />
-          {/* added above */}
+          <Route path={`users/:userId/cart`} element={<Cart />} />
         </Routes>
       ) : (
         <Routes>
@@ -65,9 +60,7 @@ const AppRoutes = () => {
             path="/products/:productId/"
             element={<SingleProduct />}
           />
-          {/* <Route path="/cart" element={<Cart />} /> */}
-          <Route path="/cart" element={<Cart userId={guestUserId} />} />
-          {/* added above */}
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       )}
     </div>
